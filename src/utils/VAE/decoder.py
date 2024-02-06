@@ -1,7 +1,7 @@
 import torch
 from torch import nn
-from torch import functional as F
-from attention import SelfAttention
+from torch.nn import functional as F
+from utils.ATTENTION.attention import SelfAttention
 
 class VAE_ResidualBlock(nn.Module):
     
