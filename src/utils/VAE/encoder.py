@@ -69,5 +69,5 @@ class VAE_Encoder(nn.Sequential):
         x = mean + std * noise
         # mysterious scaling from paper
         x *= 0.18215
-        pass
+        return x
     
