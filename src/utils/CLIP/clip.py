@@ -8,7 +8,7 @@ class CLIP(nn.Module):
         self.embedding = CLIPEmbedding(49408, 768, 77) # params come from pretrained CLIP model
         
         self.layers = nn.Module([
-            CLIPLayer(12, 769) for i in range(12)
+            CLIPLayer(12, 768) for i in range(12)
         ])
         
         self.layernorm = nn.LayerNorm(768)

@@ -22,7 +22,7 @@ class VAE_ResidualBlock(nn.Module):
     def forward(self, x:torch.Tensor) -> torch.Tensor:
         # x: (Batch_size, In_channels, Height, Width)
         
-        residual = x
+        residue = x
         x = self.groupnorm_1(x)
         
         x = F.SiLU(x)
@@ -35,7 +35,7 @@ class VAE_ResidualBlock(nn.Module):
         
         x = self.conv_2(x)
         
-        return x + self.residual_layer(residual)
+        return x + self.residual_layer(residue)
     
     
 class VAE_AttentionBlock(nn.Module):
@@ -47,7 +47,7 @@ class VAE_AttentionBlock(nn.Module):
         
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # x: (Batch_size, Features, Height, Width)
-        residual = x
+        residue = x
         
         n, c, h, w = x.shape
         # (Batch_size, Features, Height, Width) -> (Batch_size, Features, Height * Width)
@@ -61,7 +61,7 @@ class VAE_AttentionBlock(nn.Module):
         x = x.transpose(-1, -2)
         x = x.view((n,c,h,w))
         
-        return x + residual
+        return x + residue
     
 class VAE_Decoder(nn.Sequential):
     
